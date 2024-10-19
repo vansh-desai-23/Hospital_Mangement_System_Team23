@@ -50,8 +50,7 @@ def check_appointment(nameentry, doctor_combobox, timeslot_combobox, date_label)
             f"Date: {date_object.strftime('%A, %d %B %Y')}\n"
             f"Patient Name: {patient_name}\n"
             f"Kindly note your Appointment ID.\n"
-            f"Your password is the same as your appointment ID.\n"
-            f"Kindly update it for  better security."
+            f"It will be useful for searching your appt. details."
 
         )
 
@@ -82,8 +81,7 @@ def confirm_booking(nameentry, doctor_combobox, timeslot_combobox, date_combobox
             f"Date: {booking_date.strftime('%A, %d %B %Y')}\n"
             f"Patient Name: {patient_name}\n"
             f"Kindly note your Appointment ID.\n"
-            f"Your password is the same as your appointment ID\n"
-            f"Kindly update it for  better security."
+            f"It will be useful for searching your appt. details."
         )
 
 

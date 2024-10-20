@@ -44,3 +44,12 @@ class DoctorManager:
 
     def view_appointments(self, status=None):
         return self.get_appointments(status)
+
+    def check_if_already_booked(self,myappt):
+        appointments = self.load_appointments()
+        for appt in appointments:
+            if (appt['Doctor Name'] == myappt['Doctor Name'] and appt['Date'] == myappt['Date'] and
+                appt['Month'] == myappt['Month'] and appt['Year'] == myappt['Year'] and
+                 appt['Timeslot'] == myappt['Timeslot']):
+                return True
+        return False

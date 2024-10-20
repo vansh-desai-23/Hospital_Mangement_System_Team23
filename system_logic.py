@@ -5,6 +5,7 @@ from appointment_manager import Appointment_Manager
 from tkinter import messagebox
 from file_manager import load_doctor_dict
 from patient_manager import Patient_Manager
+from doctor_manager import DoctorManager
 
 def save_appointment_to_csv(patient_name, doctor, date, month, year, timeslot, status="Pending"):
     file_exists = os.path.isfile('hospital.csv')
@@ -31,9 +32,17 @@ def check_appointment(nameentry, doctor_combobox, timeslot_combobox, date_label)
     date_text = date_label['text'].replace("Next Available: ", "").strip()
     date_object = datetime.strptime(date_text, "%A, %d %B %Y") if date_text else None
     selected_timeslot = timeslot_combobox.get()
-
+    myappt = {}
+    myappt['Doctor Name'] = doctor_selected
+    myappt['Timeslot'] = selected_timeslot
+    myappt['Date'] = str(date_object.day)
+    myappt['Month'] = str(date_object.month)
+    myappt['Year'] = str(date_object.year)
+    mydoc_obj = DoctorManager(doctor_selected)
     if not patient_name or not doctor_selected or not selected_timeslot or not date_text:
         messagebox.showerror("Error", "All fields (Name, Doctor, Timeslot, and Date) must be filled!")
+    elif mydoc_obj.check_if_already_booked(myappt) :
+        messagebox.showerror('Error', 'Doctor not available, book through date or choose another doctor.')
     else:
         appointment = Appointment_Manager(None, patient_name, doctor_selected, date_object.day, date_object.month,
                                   date_object.year, selected_timeslot)
@@ -62,9 +71,17 @@ def confirm_booking(nameentry, doctor_combobox, timeslot_combobox, date_combobox
     selected_date = date_combobox.get()
     selected_month = month_combobox.get()
     selected_year = year_combobox.get()
-
+    myappt = {}
+    myappt['Doctor Name'] = doctor_selected
+    myappt['Timeslot']=selected_timeslot
+    myappt['Date'] = selected_date
+    myappt['Month'] = selected_month
+    myappt['Year'] = selected_year
+    mydoc_obj = DoctorManager(doctor_selected)
     if not patient_name or not doctor_selected or not selected_timeslot or not selected_date or not selected_year:
         messagebox.showerror("Error", "All fields (Name, Doctor, Timeslot, Date, and Year) must be filled!")
+    elif mydoc_obj.check_if_already_booked(myappt) :
+        messagebox.showerror('Error', 'The date has already been booked. Choose another date.')
     else:
         booking_date = datetime(int(selected_year), int(selected_month), int(selected_date))
 

@@ -1,12 +1,6 @@
-# Hospital_Mangement_System_Team23
+# Hospital_Mangement_System
 
-Team-23
-
-Members:
-1) Vansh Desai, BT2024134, github profile: https://github.com/vansh-desai-23
-2) P B S Abhiram,BT2024166
-3) Yashvi Mehta, BT2024136
-4) Aditi Pandey, BT2024132
+Vansh Desai, BT2024134, github profile: https://github.com/vansh-desai-23
 
 Commands to Run Project:
 a) Using Github: 
